@@ -1,0 +1,102 @@
+Une fois la VM fonctionnelle, il faudra créer un "lab".
+Voici les instructions à suivre pour cela.
+
+1. Connectez-vous à l'adresse présente en haut de l'écran de votre VM une fois configuré.
+2. Cliquez sur l'icône de feuille en haut à gauche de votre écran (sur votre page Web).
+3. Remplissez le nom, puis sauvegardez.
+
+
+Une fois dans le "lab", ajoutez des nodes :
+
+Ajouter un Network :
+- Clique droit :
+  - Number of networks to add : 1
+  - Name/Prefix : Net
+  - Type : Management(Cloud0)
+  - Icon : Au choix
+
+Ajouter un routeur :
+- Taper "Cisco vIOS Routeur"
+- Number of nodes to add : 1
+- Image : vios-adventerprisek9-m
+- Name/prefix : vIOS
+- Icon : Au choix
+- CPU : 1
+- RAM (MB) : 1024
+- Ethernets : 4
+- QEMU Version : Par défaut
+- QEMU Arch : Par défaut
+- QEMU Nic : Par défaut
+- QEMU custom options : Par défaut
+- Startup configuration : None
+- Delay (s) : 0
+- Console : telnet
+
+Ajouter un switch L3 :
+- Taper "Cisco vIOS Routeur" (Oui il faut bien mettre l'image du routeur car elle permet aussi de faire la configuration d'un switch)
+- Number of nodes to add : 1
+- Image : vios-adventerprisek9-m
+- Name/prefix : Switch
+- Icon : Au choix
+- CPU : 1
+- RAM (MB) : 1024
+- Ethernets : 8
+- QEMU Version : Par défaut
+- QEMU Arch : Par défaut
+- QEMU Nic : Par défaut
+- QEMU custom options : Par défaut
+- Startup configuration : None
+- Delay (s) : 0
+- Console : telnet
+
+Ajouter un switch L2 :
+- Taper "Cisco vIOS Switch"
+- Number of nodes to add : 3 (ou 1 par 1)
+- Image : viosl2-03.2017
+- Name/prefix : Switch
+- Icon : Au choix
+- CPU : 1
+- RAM (MB) : 1024
+- Ethernets : 4
+- QEMU Version : Par défaut
+- QEMU Arch : Par défaut
+- QEMU Nic : Par défaut
+- QEMU custom options : Par défaut
+- Startup configuration : None
+- Delay (s) : 0
+- Console : telnet
+
+Ajouter un PC :
+- Taper "Cisco vIOS Routeur"
+- Number of nodes to add : 3 (ou 1 par 1)
+- Image : linux-tinycore-6.4
+- Name/prefix : Linux
+- Icon : Au choix
+- CPU : 2
+- RAM (MB) : 1024
+- Ethernets : 1
+- QEMU Version : Par défaut
+- QEMU Arch : Par défaut
+- QEMU Nic : Par défaut
+- QEMU custom options : Par défaut
+- Startup configuration : None
+- Delay (s) : 0
+- Console : telnet
+
+Il ne reste plus qu'à relier les appareils entres eux comme cela :
+							          _____
+							         | Net |
+							         |_____|
+							 	    |
+			       ___________       	        ____|____
+			      | Switch L3 |____________________| Routeur |
+			      |___________|                    |_________|
+       _____________________________|_______________________________
+      |				    |				    |
+ _____|_____		       _____|_____		       _____|_____
+| Switch L2 |		      | Switch L2 |		      | Switch L2 |
+|___________|		      |___________|		      |___________|
+      |				    |				    |
+   ___|___			 ___|___		         ___|___
+  | Linux |		        | Linux |			| Linux |
+  |_______|			|_______|			|_______|

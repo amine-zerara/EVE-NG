@@ -1,0 +1,51 @@
+Vous trouverez à cette adresse : https://www.grosfichiers.com/qAkTc66cYDV (jusqu'au 23 mais 2025) le fichier ISO que j'ai utilisé pour faire fonctionner ma machine virtuel Ubuntu (placé dans comme suit "C:\Program Files\EVE-NG\ISO" sur mon PC.
+
+La configuration est assez basique :
+Memory : 4 GB
+Processors : 2
+Hard Disk (SCSI) : 20 GB
+CV/DVD (SATA) : Using file C:\Program Files\EVE-NG\ISO\eve-ce-prod-6.2.0-4-full.iso
+Network Adapter : NAT
+USB Controller : Present
+Sound Card : Auto detect
+Printer : Present
+Display : Auto detect
+
+Une fois la VM configurée, vous devriez voir une adresse web (IP) en haut de l'écran de votre VM (par exemple http://192.168.108.131).
+Rendez-vous à cette adresse pour créer votre premier "lab" (pour savoir comment créer un "lab", rendez-vous sur le fichier "Création de la topologie.txt" afin de suivre les étapes pas à pas).
+
+
+Pour chacun des éléments de la topologie, voici les fichiers qu'il faudra télécharger, renommer et placer au bonne endroit via Filezilla par exemple.
+
+🖥️ PC (TinyCore Linux)
+Lien : https://sourceforge.net/projects/eve-ng/files/linux/linux-tinycore-6.4.tar.gz/download
+Nom de l’archive : linux-tinycore-6.4.tar.gz
+Fichier principal après extraction : hda.qcow2
+Emplacement sur EVE-NG : /opt/unetlab/addons/qemu/linux-tinycore-6.4
+Renommage : Aucun (garder hda.qcow2 tel quel)
+
+🌐 Routeur (Cisco vIOS)
+Lien : https://upw.io/4El/vios-adventerprisek9-m.spa.159-3.m6.qcow2
+Nom du dossier (EVE-NG) : vios-adventerprisek9-m
+Fichier image : vios-adventerprisek9-m.SPA.159-3.M6.qcow2
+Emplacement sur EVE-NG : /opt/unetlab/addons/qemu/vios-adventerprisek9-m
+Renommage : Le fichier .qcow2 doit être nommé virtioa.qcow2
+
+🧠 Switch L3 (Cisco vIOS utilisé comme L3)
+Même image que le routeur ci-dessus
+Lien : https://upw.io/4El/vios-adventerprisek9-m.spa.159-3.m6.qcow2 (même image que pour le routeur)
+Nom du dossier (EVE-NG) : vios-adventerprisek9-m
+Emplacement sur EVE-NG : /opt/unetlab/addons/qemu/vios-adventerprisek9-m
+Renommage : Aucun changement supplémentaire requis si virtioa.qcow2 est déjà présent
+🟡 💡 Remarque : Sur EVE-NG, cette image apparaît dans "Cisco vIOS Router" mais peut être utilisée comme switch L3 si configurée manuellement.
+
+🧷 Switch L2 (Cisco vIOS-L2)
+Lien : https://upw.io/w5/vios_l2-adventerprisek9-m.03.2017.qcow2
+Nom du dossier (EVE-NG) : viosl2-03.2017
+Fichier image : virtioa.qcow2
+Emplacement sur EVE-NG : /opt/unetlab/addons/qemu/viosl2-03.2017
+Renommage : Le fichier .qcow2 doit être nommé virtioa.qcow2
+
+
+Pour valider les modifications, utiliser cette commande via n'importe quel dossier de votre VM :
+"/opt/unetlab/wrappers/unl_wrapper -a fixpermissions" (à effectuer à chaque fois que vous ajouter un fichier si vous testez pour vérifier si un élément fonctionne - à n'utilsez qu'une seul fois si tout est fait en une seul fois).
