@@ -1,4 +1,4 @@
-Vous trouverez à cette adresse : https://www.grosfichiers.com/qAkTc66cYDV (jusqu'au 23 mais 2025) le fichier ISO que j'ai utilisé pour faire fonctionner ma machine virtuel Ubuntu (placé dans comme suit "C:\Program Files\EVE-NG\ISO" sur mon PC.
+Vous trouverez à cette adresse : https://www.grosfichiers.com/eCkX6paAa22 (jusqu'au 27 juin 2025) le fichier ISO que j'ai utilisé pour faire fonctionner ma machine virtuel Ubuntu (placé dans comme suit "C:\Program Files\EVE-NG\ISO" sur mon PC.
 
 La configuration est assez basique :
 Memory : 4 GB
